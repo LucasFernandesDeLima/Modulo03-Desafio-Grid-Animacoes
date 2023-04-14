@@ -1,0 +1,404 @@
+:root {
+  --bg-color-wrapper: hsla(233, 100%, 97%);
+  --bg-color-header: hsl(218, 17%, 62%);
+  --bg-color-headings: hsl(275, 18%, 79%);
+  --bg-color-headings-sm: hsla(312, 91%, 96%);
+
+  --ff-Staatliches: 'Staatliches', sans-serif;
+  --ff-Palanquin: 'Palanquin', sans-serif;
+  --ff-Opensans: 'Open sans', sans-serif;
+
+  --fc-headings: hsl(0, 0%, 100%);
+  --fc-headings-sm: hsl(232, 17%, 35%);
+  --fc-introduction: hsl(274, 84%, 12%);
+  --fc-black: hsla(0, 0%, 0%, 0.25);
+
+  --fs-body: 1.6rem;
+  --fs-headings: 4rem;
+  --fs-headings-sm: 2rem;
+  --fs-introduction: 2rem;
+  --fs-footer-email: 1.4rem
+
+  --height-header: 27rem;
+
+  font-size: 62.5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+}
+
+html,
+body,
+.page {
+  min-height: 100vh;
+}
+
+body {
+  font-size: var(--fs-body);
+  background: var(--bg-color-wrapper);
+}
+.page {
+  max-width: 2000px;
+  margin: auto;
+}
+
+.page > header {
+  width: 100%;
+  position: relative;
+
+  padding-top: 3.2rem;
+}
+
+.page > header::before {
+  content: '';
+
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: var(--height-header);
+  background-color: var(--bg-color-header);
+}
+
+.page > header .wrapper {
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+
+  padding: initial;
+  max-width: initial;
+}
+
+.wrapper {
+  padding: 0 3.2rem;
+}
+
+header .wrapper > img {
+  width: 13.7rem;
+  height: fit-content;
+
+  display: block;
+
+  animation: topdown 700ms forwards;
+}
+
+header .wrapper > h1 {
+  font-family: var(--ff-Staatliches);
+  font-size: var(--fs-headings);
+  line-height: 3.4rem;
+  letter-spacing: 0.05em;
+  color: var(--fc-headings);
+  text-shadow: 0px 2px 2px var(--fc-black);
+
+  padding: 0.8rem 0;
+  background-color: var(--bg-color-headings);
+  width: 100%;
+
+  animation: topdown 700ms 200ms backwards;
+}
+
+header .wrapper p.wrapper {
+  font-family: var(--ff-Palanquin);
+  font-size: var(--fs-introduction);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--fc-introduction);
+  text-align: center;
+
+  margin-top: 1.5rem;
+  max-width: 38rem;
+  padding: 0 1.6rem;
+
+  animation: topdown 700ms 350ms backwards;
+}
+
+.page header .wrapper p:nth-of-type(2) {
+  display: none;
+}
+
+main {
+  margin-block: 6rem;
+}
+
+.cards {
+  /* max-width: 900px; */
+  margin: 0 auto 0;
+
+  display: grid;
+  gap: 3.6rem;
+}
+
+.card {
+  transition: z-index 700ms, transform 700ms;
+}
+
+.card img {
+  object-fit: cover;
+  display: block;
+
+  filter: brightness(0.7) saturate(0.7);
+  transition: filter 700ms;
+}
+
+.card img:hover {
+  filter: brightness(1.2) saturate(1.2);
+}
+
+.card figure {
+  position: relative;
+  transition: z-index 700ms, transform 700ms;
+}
+
+.card figure,
+.card figure img {
+  height: 100%;
+  border-radius: 20px;
+}
+
+.card:hover,
+.card figure:hover {
+  position: relative;
+  z-index: 10;
+  transform: scale(1.25);
+}
+.card figcaption {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.6rem;
+}
+
+.card figcaption h3 {
+  display: inline-flex;
+  align-items: center;
+
+  height: 3.5rem;
+  background-color: var(--bg-color-headings-sm);
+  border-radius: 20px;
+  padding: 0 2.4rem;
+
+  font-family: var(--ff-Staatliches);
+  font-weight: 400;
+  font-size: var(--fs-headings-sm);
+  line-height: 3.4rem;
+  letter-spacing: 0.05em;
+  color: var(--fc-headings-sm);
+
+  animation: topdown 700ms 1500ms backwards;
+}
+
+.page > footer {
+  display: none;
+}
+
+@media (min-width: 700px) {
+  :root {
+    --bg-color-wrapper: white;
+  }
+
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 1275px) {
+  .cards {
+    max-width: 900px;
+
+     /*
+   Apliquei uma regra de max-width: 1275px somente para manter a largura maxima da seção de cards 
+   afim de não aplicar para as outras telas maiores por que os cards do canto direito estava ficando
+   desproporcional com a viwport
+  */
+  }
+
+ 
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --height-header: 100%;
+    --fc-introduction: white;
+    --fs-headings: 4.8rem;
+
+    --fs-introduction: 2.4rem;
+  }
+  .page {
+    display: grid;
+    grid-template-areas:
+      'AA BB'
+      'AA CC';
+
+    grid-template-rows: 950px 1fr;
+  }
+
+  .page > header {
+    grid-area: AA;
+    padding: 3.2rem 0 12.5rem;
+  }
+
+  .page > header img {
+    width: 21.5rem;
+    height: fit-content;
+  }
+
+  header .wrapper > h1 {
+    padding: 2rem 0;
+  }
+
+  header .wrapper p.wrapper:nth-of-type(1) {
+    display: none;
+    margin-top: 0;
+  }
+
+  .page header .wrapper p:nth-of-type(2) {
+    margin-top: 0;
+    display: initial;
+    animation: downtop 700ms 350ms backwards;
+  }
+
+  .page > main {
+    grid-area: BB;
+
+    margin-block: 0;
+  }
+
+  main .wrapper {
+    padding: 6.4rem 8rem 0 10rem;
+  }
+
+  .page > footer {
+    grid-area: CC;
+  }
+
+  .cards {
+    grid-template-areas:
+      'A B C'
+      'D B E'
+      'D F E';
+
+    grid-template-columns: none;
+
+  }
+
+  .card:nth-child(1) {
+    grid-area: A;
+    animation: topdown 700ms calc(350ms * 1.5) backwards ;
+  }
+
+  .card:nth-child(2) {
+    grid-area: B;
+    animation: topdown 700ms calc(350ms * 2.5) backwards ;
+
+  }
+
+  .card:nth-child(3) {
+    grid-area: C;
+    animation: topdown 700ms calc(350ms * 3.5) backwards ;
+
+  }
+
+  .card:nth-child(4) {
+    grid-area: D;
+    animation: downtop 700ms calc(350ms * 4.5) backwards ;
+
+  }
+
+  .card:nth-child(5) {
+    grid-area: F;
+    animation: downtop 700ms calc(350ms *5.5) backwards ;
+
+  }
+
+  .card:nth-child(6) {
+    grid-area: E;
+    animation: downtop 700ms calc(350ms * 6.5) backwards ;
+
+  }
+
+  .page > footer {
+    display: initial;
+    padding: 5rem 0;
+
+    font-family: var(--ff-Opensans);
+    font-size: var(--fs-footer-email);
+    text-align: center;
+    line-height: 2.8rem;
+    color: var(--fc-headings-sm);
+
+    animation: downtop 700ms 500ms backwards;
+
+  }
+
+  .page > footer a{
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--fc-headings-sm);
+
+  }
+
+  .card figcaption h3 {
+    animation: topdown 700ms calc(350ms *7.5) backwards;
+
+  }
+}
+
+@keyframes rightleft {
+  0% {
+    transform: translateX(1500%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes leftright {
+  0% {
+    transform: translateX(-1500%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes topdown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes downtop {
+  0% {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
